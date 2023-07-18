@@ -1,3 +1,8 @@
+/* CSS reset
+https://create-react-app.dev/docs/adding-css-reset/ 
+https://github.com/csstools/postcss-normalize */
+@import-normalize;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
