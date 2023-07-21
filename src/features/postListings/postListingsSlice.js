@@ -1,10 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = { subreddits: {}, listings: {} }
+
 export const postListings = createSlice({
   name: "postListings",
-  initialState: {
-    subreddits: {},
-    listings: {},
+  initialState,
+  reducers: {
+    addSubreddit(state, action) {
+      const { name } = action.payload;
+      state.subreddits[name] = { name: name, postsRetrieved: false };
+    },
   },
-  reducers: {},
 });
+
+export const { addSubreddit } = postListings.actions;
+
+export default postListings.reducer;
