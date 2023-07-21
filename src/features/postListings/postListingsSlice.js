@@ -15,4 +15,6 @@ export const postListings = createSlice({
 
 export const { addSubreddit } = postListings.actions;
 
+export const selectSubreddits = (state) => state.postListings.subreddits;
+
 export default postListings.reducer;
