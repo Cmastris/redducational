@@ -16,14 +16,14 @@ function App() {
       dispatch(addSubreddit({ name: subreddit }));
     });
     dispatch(changeSubsLoadedStatus({ loaded: true }));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     // Fetch post listings data
     if (subsLoaded) {
       dispatch(fetchListingsData());
     }
-  }, [subsLoaded]);
+  }, [subsLoaded, dispatch]);
 
   return (
     <div className="App">
