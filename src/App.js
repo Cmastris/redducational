@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { allSubreddits } from "./data/subreddits";
-import { addSubreddit, selectSubreddits, changeSubsLoadedStatus, selectSubsLoadedStatus } from "./features/postListings/postListingsSlice";
+import { addSubreddit, selectSubreddits, changeSubsLoadedStatus, selectSubsLoadedStatus, changeSubRetrievedStatus } from "./features/postListings/postListingsSlice";
 import { fetchSubTopPosts } from "./redditAPI";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     allSubreddits.forEach(subreddit => {
       dispatch(addSubreddit({ name: subreddit }));
     });
-    dispatch(changeSubsLoadedStatus({ loaded: true }))
+    dispatch(changeSubsLoadedStatus({ loaded: true }));
   }, []);
 
   const subreddits = useSelector(selectSubreddits);
@@ -25,12 +25,12 @@ function App() {
     // https://react.dev/reference/react/useEffect#fetching-data-with-effects
     async function fetchSubData() {
       if (subsLoaded) {
-        const sub = subreddits['science'];
+        const sub = subreddits['science'].name;
         try {
-          const json = await fetchSubTopPosts(sub.name, 'day');
+          const json = await fetchSubTopPosts(sub, 'day');
           console.log(json);
           // TODO: Dispatch post data to store
-          // TODO: Change sub `postsRetrieved` to true
+          dispatch(changeSubRetrievedStatus({ name: sub, retrieved: true }));
           // TODO: Create array of post IDs
         } catch(e) {
           console.log(e);
