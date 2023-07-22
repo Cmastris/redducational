@@ -47,8 +47,7 @@ const fetchSubPostData = (sub) => async (dispatch) => {
     // TODO: Create array of post IDs
     return [1, 2, 3];
   } catch(e) {
-    console.log(e);
-    return [];
+    throw(e);
   }
 };
 
@@ -57,10 +56,21 @@ export const fetchListingsData = () => async (dispatch, getState) => {
   // https://redux.js.org/tutorials/essentials/part-5-async-logic
   const state = getState();
   const subreddits = selectSubreddits(state);
-  const sub = subreddits['science'].name;
-  
-  const ids = await dispatch(fetchSubPostData(sub));
-  console.log(ids);
+  const testSubs = ['science', 'failed fetch!', 'askscience'];
+
+  // Dispatch sub post requests asynchronously; wait for all to resolve or reject
+  const settledPromises = await Promise.allSettled(testSubs.map(sub => {
+    return dispatch(fetchSubPostData(sub));
+  }));
+  console.log(settledPromises);
+
+  const subPostIds = [];
+  settledPromises.forEach(subPromise => {
+    if (subPromise.status === "fulfilled") {
+      subPostIds.push(subPromise.value);
+    }
+  });
+  console.log(subPostIds);
 };
 
 export default postListings.reducer;
