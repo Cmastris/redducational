@@ -16,6 +16,11 @@ export const postListings = createSlice({
       state.subsLoaded = loaded;
     },
 
+    changeSubRetrievedStatus(state, action) {
+      const { name, retrieved } = action.payload;
+      state.subreddits[name].postsRetrieved = retrieved;
+    },
+
     addListing(state, action) {
       const { name, path, postIds } = action.payload;
       state.listings[name] = { name, path, postIds };
@@ -25,6 +30,7 @@ export const postListings = createSlice({
 
 export const { addSubreddit } = postListings.actions;
 export const { changeSubsLoadedStatus } = postListings.actions;
+export const { changeSubRetrievedStatus } = postListings.actions;
 export const { addListing } = postListings.actions;
 
 export const selectSubreddits = (state) => state.postListings.subreddits;

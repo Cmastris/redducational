@@ -1,5 +1,7 @@
 import reducer from "./postListingsSlice";
-import { initialState, addSubreddit, changeSubsLoadedStatus, addListing } from "./postListingsSlice";
+import { initialState } from "./postListingsSlice";
+import { addSubreddit, changeSubsLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
+import { addListing } from "./postListingsSlice";
 
 describe('postListingsSlice', () => {
 
@@ -24,6 +26,14 @@ describe('postListingsSlice', () => {
     expect(reducer(initialState, changeSubsLoadedStatus({ loaded: true }))).toEqual({
       ...initialState,
       subsLoaded: true
+    });
+  });
+
+  test('changeSubRetrievedStatus changes state to true', () => {
+    const prevState = { subreddits: { Sub1: { name: "Sub1", postsRetrieved: false } } };
+    const payload = { name: "Sub1", retrieved: true };
+    expect(reducer(prevState, changeSubRetrievedStatus(payload))).toEqual({
+      subreddits: { Sub1: { name: "Sub1", postsRetrieved: true } }
     });
   });
 
