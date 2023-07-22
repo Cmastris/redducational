@@ -56,13 +56,12 @@ export const fetchListingsData = () => async (dispatch, getState) => {
   // https://redux.js.org/tutorials/essentials/part-5-async-logic
   const state = getState();
   const subreddits = selectSubreddits(state);
-  const testSubs = ['science', 'failed fetch!', 'askscience'];
+  const subNames = Object.keys(subreddits);
 
   // Dispatch sub post requests asynchronously; wait for all to resolve or reject
-  const settledPromises = await Promise.allSettled(testSubs.map(sub => {
+  const settledPromises = await Promise.allSettled(subNames.map(sub => {
     return dispatch(fetchSubPostData(sub));
   }));
-  console.log(settledPromises);
 
   const subPostIds = [];
   settledPromises.forEach(subPromise => {
