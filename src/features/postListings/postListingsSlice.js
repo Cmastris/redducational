@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { fetchSubTopPosts } from "../../redditAPI";
+
 export const initialState = { subreddits: {}, subsLoaded: false, listings: {} }
 
 export const postListings = createSlice({
@@ -35,5 +37,23 @@ export const { addListing } = postListings.actions;
 
 export const selectSubreddits = (state) => state.postListings.subreddits;
 export const selectSubsLoadedStatus = (state) => state.postListings.subsLoaded;
+
+// https://redux.js.org/usage/writing-logic-thunks
+// https://redux.js.org/tutorials/essentials/part-5-async-logic
+export const fetchListingsData = () => async (dispatch, getState) => {
+  const state = getState();
+  const subreddits = selectSubreddits(state);
+  const sub = subreddits['science'].name;
+
+  try {
+    const json = await fetchSubTopPosts(sub, 'day');
+    console.log(json);
+    // TODO: Dispatch post data to store
+    dispatch(changeSubRetrievedStatus({ name: sub, retrieved: true }));
+    // TODO: Create array of post IDs
+  } catch(e) {
+    console.log(e);
+  }
+};
 
 export default postListings.reducer;
