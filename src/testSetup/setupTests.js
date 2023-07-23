@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 
-import { setupStore } from "./store";
+import { setupStore } from "../store";
 
 // https://redux.js.org/usage/writing-tests#integration-testing-connected-components-and-redux-logic
 // https://testing-library.com/docs/react-testing-library/setup/#custom-render
