@@ -53,6 +53,29 @@ const fetchSubPostData = (sub) => async (dispatch) => {
   }
 };
 
+export const generateOrderedPostIds = postIds => {
+  // postIds: array of arrays, each containing post ids for a given subreddit
+  // Alternately merge arrays of ids into a single array (feed)
+  // Arrays within array can be of unknown number and length
+  // E.g. [[1, 2, 3], [4, 5]] becomes [1, 4, 2, 5, 3]
+  const sourceArrays = [...postIds];
+  
+  let maxLength = 0;
+  sourceArrays.forEach(a => {
+    maxLength = a.length > maxLength ? a.length : maxLength;
+  });
+
+  const orderedIds = [];
+  for (let i = 0; i < maxLength; i++) {
+    sourceArrays.forEach(arr => {
+      if (arr.length > i) {
+        orderedIds.push(arr[i]);
+      }
+    });
+  }
+  return orderedIds;
+};
+
 export const fetchListingsData = () => async (dispatch, getState) => {
   // https://redux.js.org/usage/writing-logic-thunks
   // https://redux.js.org/tutorials/essentials/part-5-async-logic
@@ -71,7 +94,8 @@ export const fetchListingsData = () => async (dispatch, getState) => {
       subPostIds.push(subPromise.value);
     }
   });
-  console.log(subPostIds);
+
+  const orderedFeedIds = generateOrderedPostIds(subPostIds);
 };
 
 export default postListings.reducer;

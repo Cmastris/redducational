@@ -2,6 +2,7 @@ import reducer from "./postListingsSlice";
 import { initialState } from "./postListingsSlice";
 import { addSubreddit, changeSubsLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
 import { addListing } from "./postListingsSlice";
+import { generateOrderedPostIds } from "./postListingsSlice";
 
 describe('postListingsSlice', () => {
 
@@ -56,5 +57,35 @@ describe('postListingsSlice', () => {
         "Cat 1": newListing
       }
     });
+  });
+
+  test('generateOrderedPostIds alternately merges 2 arrays of equal length', () => {
+    const arr1 = ['1', '2', '3'];
+    const arr2 = ['4', '5', '6'];
+    const expected = ['1', '4', '2', '5', '3', '6'];
+    expect(generateOrderedPostIds([arr1, arr2])).toEqual(expected);
+  });
+
+  test('generateOrderedPostIds alternately merges 2 arrays of unequal length', () => {
+    const arr1 = ['1', '2'];
+    const arr2 = ['3', '4', '5'];
+    const expected = ['1', '3', '2', '4', '5'];
+    expect(generateOrderedPostIds([arr1, arr2])).toEqual(expected);
+  });
+
+  test('generateOrderedPostIds alternately merges 3 arrays of unequal length', () => {
+    const arr1 = ['1'];
+    const arr2 = ['2', '3', '4'];
+    const arr3 = ['5', '6'];
+    const expected = ['1', '2', '5', '3', '6', '4'];
+    expect(generateOrderedPostIds([arr1, arr2, arr3])).toEqual(expected);
+  });
+
+  test('generateOrderedPostIds returns expected result if an array is empty', () => {
+    const arr1 = ['1', '2'];
+    const arr2 = [];
+    const arr3 = ['3', '4', '5'];
+    const expected = ['1', '3', '2', '4', '5'];
+    expect(generateOrderedPostIds([arr1, arr2, arr3])).toEqual(expected);
   });
 });
