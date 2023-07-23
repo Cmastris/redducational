@@ -1,13 +1,17 @@
-import { screen } from '@testing-library/react';
+import { screen } from "@testing-library/react";
 
-import { renderWithProviders } from './setupTests';
-import App from './App';
+import App from "./App";
+import { renderWithProviders } from "./testSetup/setupTests";
 
-test('App renders without crashing', () => {
-  renderWithProviders(<App />);
-});
+// https://testing-library.com/docs/react-testing-library/intro
+// https://jestjs.io/docs/asynchronous
 
 test('App dummy content is rendered', () => {
   renderWithProviders(<App />);
-  screen.getByText(/Hello World!/i);
+  expect(screen.getByText("Hello World!")).toBeInTheDocument();
 });
+
+// test('Waits for async code and fails', async () => {
+//   renderWithProviders(<App />);
+//   expect(await screen.findByText('Not present')).toBeInTheDocument();
+// });
