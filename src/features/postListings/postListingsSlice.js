@@ -41,11 +41,13 @@ export const selectSubsLoadedStatus = (state) => state.postListings.subsLoaded;
 const fetchSubPostData = (sub) => async (dispatch) => {
   try {
     const json = await fetchSubTopPosts(sub, 'day');
-    console.log(json);
+    const postsData = json.data.children.map(post => post.data);
+    // console.log(postsData);
     // TODO: Dispatch post data to store
+
     dispatch(changeSubRetrievedStatus({ name: sub, retrieved: true }));
-    // TODO: Create array of post IDs
-    return [1, 2, 3];
+
+    return postsData.map(post => post.id);
   } catch(e) {
     throw(e);
   }
