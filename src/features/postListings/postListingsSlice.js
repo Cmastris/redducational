@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { fetchSubTopPosts } from "../../redditAPI";
 
-export const initialState = { subreddits: {}, subsLoaded: false, listings: {} }
+export const initialState = {
+  subsLoaded: false,
+  subreddits: {},
+  listingsLoaded: false,
+  listings: {}
+};
 
 export const postListings = createSlice({
   name: "postListings",
@@ -27,6 +32,11 @@ export const postListings = createSlice({
       const { name, path, postIds } = action.payload;
       state.listings[name] = { name, path, postIds };
     },
+
+    changeListingsLoadedStatus(state, action) {
+      const { loaded } = action.payload;
+      state.listingsLoaded = loaded;
+    },
   },
 });
 
@@ -34,9 +44,11 @@ export const { addSubreddit } = postListings.actions;
 export const { changeSubsLoadedStatus } = postListings.actions;
 export const { changeSubRetrievedStatus } = postListings.actions;
 export const { addListing } = postListings.actions;
+export const { changeListingsLoadedStatus } = postListings.actions;
 
 export const selectSubreddits = (state) => state.postListings.subreddits;
 export const selectSubsLoadedStatus = (state) => state.postListings.subsLoaded;
+export const selectListingsLoadedStatus = (state) => state.postListings.listingsLoaded;
 
 const fetchSubPostData = (sub) => async (dispatch) => {
   try {

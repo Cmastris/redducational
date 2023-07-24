@@ -1,7 +1,7 @@
 import reducer from "./postListingsSlice";
 import { initialState } from "./postListingsSlice";
 import { addSubreddit, changeSubsLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
-import { addListing } from "./postListingsSlice";
+import { addListing, changeListingsLoadedStatus } from "./postListingsSlice";
 import { generateOrderedPostIds } from "./postListingsSlice";
 
 describe('postListingsSlice', () => {
@@ -56,6 +56,13 @@ describe('postListingsSlice', () => {
         "All": prevListing,
         "Cat 1": newListing
       }
+    });
+  });
+
+  test('changeListingsLoadedStatus changes state to true', () => {
+    expect(reducer(initialState, changeListingsLoadedStatus({ loaded: true }))).toEqual({
+      ...initialState,
+      listingsLoaded: true
     });
   });
 
