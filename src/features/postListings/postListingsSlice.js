@@ -96,6 +96,7 @@ export const fetchListingsData = () => async (dispatch, getState) => {
   });
 
   const orderedFeedIds = generateOrderedPostIds(subPostIds);
+  dispatch(addListing({ name: "All", path: "", postIds: orderedFeedIds }));
 };
 
 export default postListings.reducer;
