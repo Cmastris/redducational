@@ -29,8 +29,8 @@ export const postListings = createSlice({
     },
 
     addListing(state, action) {
-      const { name, path, postIds } = action.payload;
-      state.listings[name] = { name, path, postIds };
+      const { name, path, includedSubs, postIds } = action.payload;
+      state.listings[name] = { name, path, includedSubs, postIds };
     },
 
     changeListingsLoadedStatus(state, action) {
@@ -108,7 +108,7 @@ export const fetchListingsData = () => async (dispatch, getState) => {
   });
 
   const orderedFeedIds = generateOrderedPostIds(subPostIds);
-  dispatch(addListing({ name: "All", path: "", postIds: orderedFeedIds }));
+  dispatch(addListing({ name: "All", path: "", includedSubs: subNames, postIds: orderedFeedIds }));
   dispatch(changeListingsLoadedStatus({ loaded: true }));
 };
 

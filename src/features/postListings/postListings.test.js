@@ -39,7 +39,7 @@ describe('postListingsSlice', () => {
   });
 
   test('addListing adds a listing to the initial state', () => {
-    const listing = { name: "All", path: "", postIds: [1, 2, 3] };
+    const listing = { name: "All", path: "", includedSubs: ['a', 'b', 'c'], postIds: [1, 2, 3] };
     expect(reducer(initialState, addListing(listing))).toEqual({
       ...initialState,
       listings: { "All": listing }
@@ -47,9 +47,9 @@ describe('postListingsSlice', () => {
   });
 
   test('addListing adds a listing to a populated listings object', () => {
-    const prevListing = { name: "All", path: "", postIds: [1, 2, 3] };
+    const prevListing = { name: "All", path: "", includedSubs: ['a', 'b', 'c'], postIds: [1, 2, 3] };
     const prevState = { listings: { "All": prevListing } };
-    const newListing = { name: "Cat 1", path: "cat-1", postIds: [1, 3] };
+    const newListing = { name: "Cat 1", path: "cat-1", includedSubs: ['a', 'c'], postIds: [1, 3] };
 
     expect(reducer(prevState, addListing(newListing))).toEqual({
       listings: {
