@@ -37,6 +37,12 @@ export const postListings = createSlice({
       const { loaded } = action.payload;
       state.listingsLoaded = loaded;
     },
+
+    updateListingPostIds(state, action) {
+      const { name, postIds } = action.payload;
+      state.listings[name].postIds = postIds;
+    },
+
   },
 });
 
@@ -45,6 +51,7 @@ export const { changeStaticDataLoadedStatus } = postListings.actions;
 export const { changeSubRetrievedStatus } = postListings.actions;
 export const { addListing } = postListings.actions;
 export const { changeListingsLoadedStatus } = postListings.actions;
+export const { updateListingPostIds } = postListings.actions;
 
 export const selectSubreddits = (state) => state.postListings.subreddits;
 export const selectStaticDataLoadedStatus = (state) => state.postListings.staticDataLoaded;

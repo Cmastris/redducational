@@ -1,7 +1,7 @@
 import reducer from "./postListingsSlice";
 import { initialState } from "./postListingsSlice";
 import { addSubreddit, changeStaticDataLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
-import { addListing, changeListingsLoadedStatus } from "./postListingsSlice";
+import { addListing, changeListingsLoadedStatus, updateListingPostIds } from "./postListingsSlice";
 import { generateOrderedPostIds } from "./postListingsSlice";
 
 describe('postListingsSlice', () => {
@@ -63,6 +63,21 @@ describe('postListingsSlice', () => {
     expect(reducer(initialState, changeListingsLoadedStatus({ loaded: true }))).toEqual({
       ...initialState,
       listingsLoaded: true
+    });
+  });
+
+  test('updateListingPostIds overwrites a listing\'s postIds', () => {
+    const prevListing = { name: "Cat 1", path: "cat-1", includedSubs: ['a', 'c'], postIds: [] };
+    const prevState = { listings: { "Cat 1": prevListing } };
+    const payload = { name: "Cat 1", postIds: [1, 3] };
+
+    expect(reducer(prevState, updateListingPostIds(payload))).toEqual({
+      listings: {
+        "Cat 1": {
+          ...prevListing,
+          postIds: [1, 3]
+        }
+      }
     });
   });
 
