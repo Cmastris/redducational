@@ -1,6 +1,6 @@
 import reducer from "./postListingsSlice";
 import { initialState } from "./postListingsSlice";
-import { addSubreddit, changeSubsLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
+import { addSubreddit, changeStaticDataLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
 import { addListing, changeListingsLoadedStatus } from "./postListingsSlice";
 import { generateOrderedPostIds } from "./postListingsSlice";
 
@@ -23,10 +23,10 @@ describe('postListingsSlice', () => {
     });
   });
 
-  test('changeSubsLoadedStatus changes state to true', () => {
-    expect(reducer(initialState, changeSubsLoadedStatus({ loaded: true }))).toEqual({
+  test('changeStaticDataLoadedStatus changes state to true', () => {
+    expect(reducer(initialState, changeStaticDataLoadedStatus({ loaded: true }))).toEqual({
       ...initialState,
-      subsLoaded: true
+      staticDataLoaded: true
     });
   });
 
