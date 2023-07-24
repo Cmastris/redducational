@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import postContentReducer from "./features/postContent/postContentSlice";
 import postListingsReducer from "./features/postListings/postListingsSlice";
 
 const reducers = {
+  postContent: postContentReducer,
   postListings: postListingsReducer,
 };
 
