@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { allSubreddits } from "./data/subreddits";
-import { addSubreddit, changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "./features/postListings/postListingsSlice";
+import { categories } from "./data/categories";
+import { addSubreddit, addListing } from "./features/postListings/postListingsSlice";
+import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "./features/postListings/postListingsSlice";
 import { fetchListingsData } from "./features/postListings/postListingsSlice";
 
 function App() {
@@ -11,10 +13,21 @@ function App() {
   const staticDataLoaded = useSelector(selectStaticDataLoadedStatus);
 
   useEffect(() => {
-    // Load array of source subreddit names into state
+    // Load array of source subreddit names (used to fetch data) into state
     allSubreddits.forEach(subreddit => {
       dispatch(addSubreddit({ name: subreddit }));
     });
+
+    // Load category names & paths (used to render category list) into state
+    categories.forEach(category => {
+      dispatch(addListing({
+        name: category.name,
+        path: category.path,
+        includedSubs: category.includedSubs,
+        postIds: []
+      }));
+    })
+
     dispatch(changeStaticDataLoadedStatus({ loaded: true }));
   }, [dispatch]);
 
