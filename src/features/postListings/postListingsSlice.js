@@ -61,8 +61,22 @@ const fetchSubPostData = (sub) => async (dispatch) => {
   try {
     const json = await fetchSubTopPosts(sub, 'day');
     const postsData = json.data.children.map(post => post.data);
-    // console.log(postsData);
-    // TODO: Dispatch post data to store
+
+    postsData.forEach(post => {
+      const postSummary = {
+        author: post.author,
+        commentCount: post.num_comments,
+        commentsPath: post.permalink,
+        id: post.id,
+        isSelfPost: post.is_self,
+        link: post.url,
+        subreddit: post.subreddit,
+        thumbnail: post.thumbnail,
+        title: post.title,
+        upvotes: post.ups,
+      };
+      dispatch(addPost(postSummary));
+    });
 
     dispatch(changeSubRetrievedStatus({ name: sub, retrieved: true }));
 
