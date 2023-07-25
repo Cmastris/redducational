@@ -6,11 +6,7 @@ export const handlers = [
   // GET subreddit top posts request
   rest.get("https://www.reddit.com/r/*/top/*", (req, res, ctx) => {
     return res(
-      ctx.status(200),
-      ctx.json({
-        "kind": "Listing",
-        "data": {}
-      }),
+      ctx.status(429), // Simulate rate limiting so backup JSON is used
     )
   }),
 
