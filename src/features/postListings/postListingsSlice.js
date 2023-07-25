@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { fetchSubTopPosts } from "../../redditAPI";
+import { addPost } from "../postContent/postContentSlice";
 
 export const initialState = {
   staticDataLoaded: false,
@@ -59,8 +60,8 @@ export const selectListingsLoadedStatus = (state) => state.postListings.listings
 
 const fetchSubPostData = (sub) => async (dispatch) => {
   try {
-    const json = await fetchSubTopPosts(sub, 'day');
-    const postsData = json.data.children.map(post => post.data);
+    const { data, successfulFetch } = await fetchSubTopPosts(sub, 'day');
+    const postsData = data.data.children.map(post => post.data);
 
     postsData.forEach(post => {
       const postSummary = {
@@ -78,7 +79,7 @@ const fetchSubPostData = (sub) => async (dispatch) => {
       dispatch(addPost(postSummary));
     });
 
-    dispatch(changeSubRetrievedStatus({ name: sub, retrieved: true }));
+    dispatch(changeSubRetrievedStatus({ name: sub, retrieved: successfulFetch }));
 
     return postsData.map(post => post.id);
   } catch(e) {
