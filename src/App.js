@@ -7,6 +7,8 @@ import { addSubreddit, addListing } from "./features/postListings/postListingsSl
 import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "./features/postListings/postListingsSlice";
 import { fetchListingsData } from "./features/postListings/postListingsSlice";
 
+import Header from "./components/Header/Header";
+
 function App() {
 
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      Hello World!
+      <Header />
     </div>
   );
 }
