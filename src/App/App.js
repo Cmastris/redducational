@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { allSubreddits } from "./data/subreddits";
-import { categories } from "./data/categories";
-import { addSubreddit, addListing } from "./features/postListings/postListingsSlice";
-import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "./features/postListings/postListingsSlice";
-import { fetchListingsData } from "./features/postListings/postListingsSlice";
+import { allSubreddits } from "../data/subreddits";
+import { categories } from "../data/categories";
+import { addSubreddit, addListing } from "../features/postListings/postListingsSlice";
+import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "../features/postListings/postListingsSlice";
+import { fetchListingsData } from "../features/postListings/postListingsSlice";
 
-import Header from "./components/Header/Header";
+import Header from "../components/Header/Header";
 
 function App() {
 

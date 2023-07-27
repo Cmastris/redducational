@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
-import App from "./App";
+import App from "./App/App";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import store from "./store";
 

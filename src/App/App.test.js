@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 
 import App from "./App";
-import { renderWithProviders } from "./testSetup/setupTests";
+import { renderWithProviders } from "../testSetup/setupTests";
 
 // https://testing-library.com/docs/react-testing-library/intro
 // https://jestjs.io/docs/asynchronous
