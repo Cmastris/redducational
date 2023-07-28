@@ -8,7 +8,7 @@ import { renderWithProviders } from "../testSetup/setupTests";
 
 test('App header content is rendered', () => {
   renderWithProviders(<App />);
-  expect(screen.getByText("redducational")).toBeInTheDocument();
+  expect(screen.getByText("ucational")).toBeInTheDocument();
 });
 
 // test('Waits for async code and fails', async () => {
