@@ -11,6 +11,7 @@ export default function PostListings({ name }) {
   function generatePosts() {
     
     const postIds = listing.postIds;
+    // TODO: generate filtered category postIds
     if (postIds.length === 0) {
       return <p>Sorry, no posts available.</p>
     }
