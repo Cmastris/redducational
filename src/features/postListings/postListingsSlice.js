@@ -57,6 +57,7 @@ export const { updateListingPostIds } = postListings.actions;
 export const selectSubreddits = (state) => state.postListings.subreddits;
 export const selectStaticDataLoadedStatus = (state) => state.postListings.staticDataLoaded;
 export const selectListingsLoadedStatus = (state) => state.postListings.listingsLoaded;
+export const selectListing = (state, name) => state.postListings.listings[name];
 
 const fetchSubPostData = (sub) => async (dispatch) => {
   try {
