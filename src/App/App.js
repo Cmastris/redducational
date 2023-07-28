@@ -8,6 +8,7 @@ import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "../f
 import { fetchListingsData } from "../features/postListings/postListingsSlice";
 
 import Header from "../components/Header/Header";
+import styles from "./App.module.css";
 
 function App() {
 
@@ -41,8 +42,9 @@ function App() {
   }, [staticDataLoaded, dispatch]);
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Header />
+      Post Listings
     </div>
   );
 }
