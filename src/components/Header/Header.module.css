@@ -1,9 +1,25 @@
 .header {
+  margin-bottom: 2em;
   background-color: rgb(255, 255, 255);
+  text-align: center;
 }
 
 .appName {
+  margin: 0.4em 0;
+  padding: 0 7.5%;
   font-family: 'Varela Round', 'Noto Sans', sans-serif;
+}
+
+@media only screen and (min-width: 1024px) {
+  .header {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);  /* Logo on left; search bar centred */
+  }
+
+  .appName {
+    margin-right: auto;  /* Push logo to the left */
+  }
 }
 
 .orange {
