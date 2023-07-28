@@ -7,7 +7,7 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import PostListing from "./features/postListings/PostListing";
 
 
-const categoryListings = categories.map(category => {
+export const categoryListingRoutes = categories.map(category => {
   return {
     path: "categories/" + category.path,
     element: <PostListing name={category.name} />,
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         path: "",
         element: <PostListing name="All" />,
       },
-      ...categoryListings
+      ...categoryListingRoutes
     ],
   },
 ]);
