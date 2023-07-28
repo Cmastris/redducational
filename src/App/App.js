@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 import { allSubreddits } from "../data/subreddits";
 import { categories } from "../data/categories";
@@ -44,7 +45,7 @@ function App() {
   return (
     <div className={styles.App}>
       <Header />
-      Post Listings
+      <Outlet />
     </div>
   );
 }

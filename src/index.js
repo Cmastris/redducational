@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App/App";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import PostListing from "./features/postListings/PostListing";
 import store from "./store";
 
 // https://reactrouter.com/en/main/routers/create-browser-router
@@ -14,6 +15,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <PostListing name="All" />,
+      },
+    ],
   },
 ]);
 
