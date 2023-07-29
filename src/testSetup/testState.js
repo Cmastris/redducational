@@ -18,6 +18,11 @@ export const testState1 = {
         name: "Cat 2",
         includedSubs: ["Sub2"],
         postIds: []
+      },
+      "Empty Listing": {
+        name: "Empty Listing",
+        includedSubs: [],
+        postIds: []
       }
     }
   },

@@ -42,3 +42,20 @@ test('Posts are not filtered when rendered in the `All` listing feed', () => {
   expect(screen.getByText("5")).toBeInTheDocument();
   expect(screen.getByText("6")).toBeInTheDocument();
 });
+
+test('Posts are filtered by subreddit when rendered in a category listing feed', () => {
+  renderWithProviders(<PostListing name="Cat 1" />, { preloadedState: testState1 });
+  // TODO: change to post title after implementing post item component
+  // Cat 1 should include Sub1 and Sub3 (posts 1, 3, 4, & 6)
+  expect(screen.getByText("1")).toBeInTheDocument();
+  expect(screen.getByText("3")).toBeInTheDocument();
+  expect(screen.getByText("4")).toBeInTheDocument();
+  expect(screen.getByText("6")).toBeInTheDocument();
+  expect(screen.queryByText("2")).toBeNull();
+  expect(screen.queryByText("5")).toBeNull();
+});
+
+test('A listing feed containing no posts renders an error message', () => {
+  renderWithProviders(<PostListing name="Empty Listing" />, { preloadedState: testState1 });
+  expect(screen.getByText("Sorry, no posts available.")).toBeInTheDocument();
+});

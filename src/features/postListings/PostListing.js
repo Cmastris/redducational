@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 
+import { selectAllPosts } from "../postContent/postContentSlice";
 import { selectListingsLoadedStatus } from "./postListingsSlice";
 import { selectListing } from "./postListingsSlice";
 
@@ -7,11 +8,26 @@ export default function PostListings({ name }) {
 
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
   const listing = useSelector(state => selectListing(state, name));
+  const mainListing = useSelector(state => selectListing(state, "All"));
+  const postsContent = useSelector(selectAllPosts);
+
+  function getFilteredPostIds() {
+    // TODO: generate filtered search result postIds
+    const allPostIds = mainListing.postIds;
+    const listingSubs = listing.includedSubs;
+
+    const categoryPostIds = allPostIds.filter(postId => {
+      // Post's subreddit is within listing's included subreddits
+      const postSub = postsContent[postId].subreddit;
+      return listingSubs.includes(postSub);
+    });
+
+    return categoryPostIds;
+  }
 
   function generatePosts() {
-    
-    const postIds = listing.postIds;
-    // TODO: generate filtered category postIds
+
+    const postIds = (name === "All") ? mainListing.postIds : getFilteredPostIds();
     if (postIds.length === 0) {
       return <p>Sorry, no posts available.</p>
     }
