@@ -15,6 +15,7 @@ export const postContent = createSlice({
 
 export const { addPost } = postContent.actions;
 
+export const selectAllPosts = (state) => state.postContent.posts;
 export const selectPost = (state, id) => state.postContent.posts[id];
 
 export default postContent.reducer;
