@@ -1,11 +1,11 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { screen } from "@testing-library/react";
 
-import App from "./App";
 import PostListing from "../features/postListings/PostListing";
 
 import { categoryListingRoutes } from "../routing";
 import { renderWithProviders } from "../testSetup/setupTests";
+import { simpleAppRouter } from "../testSetup/testRouters";
 import { testState1 } from "../testSetup/testState";
 
 // https://testing-library.com/docs/react-testing-library/intro
@@ -13,10 +13,7 @@ import { testState1 } from "../testSetup/testState";
 // https://reactrouter.com/en/main/routers/create-memory-router
 
 test('App header content is rendered', () => {
-  const routes = [{ path: "/", element: <App /> }]
-  const router = createMemoryRouter(routes, { initialEntries: ["/"] });
-
-  renderWithProviders(<RouterProvider router={router} />);
+  renderWithProviders(<RouterProvider router={simpleAppRouter} />);
   expect(screen.getByText("ucational")).toBeInTheDocument();
 });
 
