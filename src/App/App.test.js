@@ -1,11 +1,12 @@
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { screen } from "@testing-library/react";
 
+import App from "../App/App";
 import PostListing from "../features/postListings/PostListing";
 
 import { categoryListingRoutes } from "../routing";
 import { renderWithProviders } from "../testSetup/setupTests";
-import { simpleAppRouter } from "../testSetup/testRouters";
+import { createRouterProvider } from "../testSetup/testRouters";
 import { testState1 } from "../testSetup/testState";
 
 // https://testing-library.com/docs/react-testing-library/intro
@@ -13,13 +14,13 @@ import { testState1 } from "../testSetup/testState";
 // https://reactrouter.com/en/main/routers/create-memory-router
 
 test('App header content is rendered', () => {
-  renderWithProviders(<RouterProvider router={simpleAppRouter} />);
+  renderWithProviders(createRouterProvider(<App />));
   expect(screen.getByText("ucational")).toBeInTheDocument();
 });
 
 test('Listing name is rendered', () => {
   const name = "Science";
-  renderWithProviders(<PostListing name={name} />);
+  renderWithProviders(createRouterProvider(<PostListing name={name} />));
   expect(screen.getByText(name)).toBeInTheDocument();
 });
 
@@ -33,7 +34,8 @@ test('Category listing routing', () => {
 });
 
 test('Posts are not filtered when rendered in the `All` listing feed', () => {
-  renderWithProviders(<PostListing name="All" />, { preloadedState: testState1 });
+  const listing = createRouterProvider(<PostListing name="All" />);
+  renderWithProviders(listing, { preloadedState: testState1 });
   // TODO: change to post title after implementing post item component
   expect(screen.getByText("1")).toBeInTheDocument();
   expect(screen.getByText("2")).toBeInTheDocument();
@@ -44,7 +46,8 @@ test('Posts are not filtered when rendered in the `All` listing feed', () => {
 });
 
 test('Posts are filtered by subreddit when rendered in a category listing feed', () => {
-  renderWithProviders(<PostListing name="Cat 1" />, { preloadedState: testState1 });
+  const listing = createRouterProvider(<PostListing name="Cat 1" />);
+  renderWithProviders(listing, { preloadedState: testState1 });
   // TODO: change to post title after implementing post item component
   // Cat 1 should include Sub1 and Sub3 (posts 1, 3, 4, & 6)
   expect(screen.getByText("1")).toBeInTheDocument();
@@ -56,6 +59,7 @@ test('Posts are filtered by subreddit when rendered in a category listing feed',
 });
 
 test('A listing feed containing no posts renders an error message', () => {
-  renderWithProviders(<PostListing name="Empty Listing" />, { preloadedState: testState1 });
+  const listing = createRouterProvider(<PostListing name="Empty Listing" />);
+  renderWithProviders(listing, { preloadedState: testState1 });
   expect(screen.getByText("Sorry, no posts available.")).toBeInTheDocument();
 });
