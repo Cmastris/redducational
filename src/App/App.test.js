@@ -13,7 +13,10 @@ import { testState1 } from "../testSetup/testState";
 // https://reactrouter.com/en/main/routers/create-memory-router
 
 test('App header content is rendered', () => {
-  renderWithProviders(<App />);
+  const routes = [{ path: "/", element: <App /> }]
+  const router = createMemoryRouter(routes, { initialEntries: ["/"] });
+
+  renderWithProviders(<RouterProvider router={router} />);
   expect(screen.getByText("ucational")).toBeInTheDocument();
 });
 

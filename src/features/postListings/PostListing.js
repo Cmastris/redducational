@@ -4,7 +4,7 @@ import { selectAllPosts } from "../postContent/postContentSlice";
 import { selectListingsLoadedStatus } from "./postListingsSlice";
 import { selectListing } from "./postListingsSlice";
 
-export default function PostListings({ name }) {
+export default function PostListings({ name, search }) {
 
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
   const listing = useSelector(state => selectListing(state, name));
@@ -12,17 +12,22 @@ export default function PostListings({ name }) {
   const postsContent = useSelector(selectAllPosts);
 
   function getFilteredPostIds() {
-    // TODO: generate filtered search result postIds
     const allPostIds = mainListing.postIds;
-    const listingSubs = listing.includedSubs;
 
-    const categoryPostIds = allPostIds.filter(postId => {
-      // Post's subreddit is within listing's included subreddits
-      const postSub = postsContent[postId].subreddit;
-      return listingSubs.includes(postSub);
-    });
+    if (search) {
+      // TODO: return filtered ids based on search query
+      return allPostIds;
 
-    return categoryPostIds;
+    } else {
+      const listingSubs = listing.includedSubs;
+      const categoryPostIds = allPostIds.filter(postId => {
+        // Post's subreddit is within listing's included subreddits
+        const postSub = postsContent[postId].subreddit;
+        return listingSubs.includes(postSub);
+      });
+
+      return categoryPostIds;
+    }
   }
 
   function generatePosts() {

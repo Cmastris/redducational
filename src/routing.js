@@ -25,6 +25,10 @@ export const router = createBrowserRouter([
         path: "",
         element: <PostListing name="All" />,
       },
+      {
+        path: "search",
+        element: <PostListing name="Search Results" search={true} />,
+      },
       ...categoryListingRoutes
     ],
   },
