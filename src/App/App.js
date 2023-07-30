@@ -9,6 +9,7 @@ import { changeStaticDataLoadedStatus, selectStaticDataLoadedStatus } from "../f
 import { fetchListingsData } from "../features/postListings/postListingsSlice";
 
 import Header from "../components/Header/Header";
+import NavList from "../components/NavList/NavList";
 import styles from "./App.module.css";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
   return (
     <div className={styles.App}>
       <Header />
+      <NavList />
       <Outlet />
     </div>
   );
