@@ -91,7 +91,7 @@ describe('PostListings.js', () => {
   test('A listing feed containing no posts renders an error message', () => {
     const listing = createRouterProvider(<PostListing name="Empty Listing" />);
     renderWithProviders(listing, { preloadedState: testState1 });
-    expect(screen.getByText("Sorry, no posts available.")).toBeInTheDocument();
+    expect(screen.getByText("Sorry, no posts found.")).toBeInTheDocument();
   });  
 });
 

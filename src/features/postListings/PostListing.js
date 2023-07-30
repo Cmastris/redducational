@@ -53,7 +53,7 @@ export default function PostListings({ name, search }) {
     }
 
     if (postIds.length === 0) {
-      return <p>Sorry, no posts available.</p>
+      return <p>Sorry, no posts found.</p>
     }
 
     // TODO: return `PostListingItem` components
