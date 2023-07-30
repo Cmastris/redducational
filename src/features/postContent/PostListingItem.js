@@ -9,7 +9,10 @@ export default function PostListingItem({ id }) {
   return (
     <article>
       <Link to={post.commentsPath}>
-        <div>{post.subreddit}</div>
+        <div>
+          <div>{post.subreddit}</div>
+          <div>{post.category}</div>
+        </div>
         <h3>{post.title}</h3>
         <div>
           <div>{post.upvotes}</div>
