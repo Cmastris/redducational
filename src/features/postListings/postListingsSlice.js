@@ -57,16 +57,39 @@ export const { updateListingPostIds } = postListings.actions;
 export const selectSubreddits = (state) => state.postListings.subreddits;
 export const selectStaticDataLoadedStatus = (state) => state.postListings.staticDataLoaded;
 export const selectListingsLoadedStatus = (state) => state.postListings.listingsLoaded;
+export const selectAllListings = (state) => state.postListings.listings;
 export const selectListing = (state, name) => state.postListings.listings[name];
 
-const fetchSubPostData = (sub) => async (dispatch) => {
+
+const getPostCategory = (post, listings) => {
+  // Assumes each subreddit is in a single category
+  // If not, the first inclusive category will be assigned as *the* category
+  let postCategory = null;
+  for (const key in listings) {
+    if (key === "All") {
+      continue;
+    }
+    const category = listings[key];
+    if (category.includedSubs.includes(post.subreddit)) {
+      postCategory = category.name;
+      break;
+    }
+  }
+  return postCategory;
+}
+
+const fetchSubPostData = (sub) => async (dispatch, getState) => {
   try {
     const { data, successfulFetch } = await fetchSubTopPosts(sub, 'day');
     const postsData = data.data.children.map(post => post.data);
 
+    const state = getState();
+    let listings = selectAllListings(state);  // Used to categorise posts
+
     postsData.forEach(post => {
       const postSummary = {
         author: post.author,
+        category: getPostCategory(post, listings),
         commentCount: post.num_comments,
         commentsPath: post.permalink,
         id: post.id,
