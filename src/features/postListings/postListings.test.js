@@ -49,6 +49,44 @@ describe('PostListings.js', () => {
     expect(screen.queryByText("2")).toBeNull();
     expect(screen.queryByText("5")).toBeNull();
   });
+
+  test('Posts are filtered by title when rendered in a search listing feed', () => {
+    const component = <PostListing name="Search Results" search={true} />;
+    const routing = createRouterProvider(component, "/search", ["/search?q=post+2"]);
+    renderWithProviders(routing, { preloadedState: testState1 });
+    // TODO: change to post title after implementing post item component
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("20")).toBeInTheDocument();
+    expect(screen.queryByText("1")).toBeNull();
+    expect(screen.queryByText("3")).toBeNull();
+    expect(screen.queryByText("4")).toBeNull();
+    expect(screen.queryByText("5")).toBeNull();
+  });
+
+  test('Posts are filtered by subreddit when rendered in a search listing feed', () => {
+    const component = <PostListing name="Search Results" search={true} />;
+    const routing = createRouterProvider(component, "/search", ["/search?q=Sub2"]);
+    renderWithProviders(routing, { preloadedState: testState1 });
+    // TODO: change to post title after implementing post item component
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
+    expect(screen.getByText("20")).toBeInTheDocument();
+    expect(screen.queryByText("1")).toBeNull();
+    expect(screen.queryByText("3")).toBeNull();
+    expect(screen.queryByText("6")).toBeNull();
+  });
+
+  test('All posts are rendered in a search listing feed without a `q` param', () => {
+    const component = <PostListing name="Search Results" search={true} />;
+    const routing = createRouterProvider(component, "/search", ["/search"]);
+    renderWithProviders(routing, { preloadedState: testState1 });
+    // TODO: change to post title after implementing post item component
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
+  });
   
   test('A listing feed containing no posts renders an error message', () => {
     const listing = createRouterProvider(<PostListing name="Empty Listing" />);

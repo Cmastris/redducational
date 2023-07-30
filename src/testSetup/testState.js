@@ -7,7 +7,7 @@ export const testState1 = {
       "All": {
         name: "All",
         includedSubs: ["Sub1", "Sub2", "Sub3"],
-        postIds: ["1", "2", "3", "4", "5", "6"]
+        postIds: ["1", "2", "3", "4", "5", "6", "20"]
       },
       "Cat 1": {
         name: "Cat 1",
@@ -57,6 +57,11 @@ export const testState1 = {
         id: "6",
         subreddit: "Sub3",
         title: "Post 6"
+      },
+      "20": {
+        id: "20",
+        subreddit: "Sub2",
+        title: "Post 20"
       },
     }
   }
