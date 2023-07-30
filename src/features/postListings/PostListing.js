@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import { selectAllPosts } from "../postContent/postContentSlice";
+import PostListingItem from "../postContent/PostListingItem";
 import { selectListingsLoadedStatus } from "./postListingsSlice";
 import { selectListing } from "./postListingsSlice";
 
@@ -56,15 +57,15 @@ export default function PostListings({ name, search }) {
       return <p>Sorry, no posts found.</p>
     }
 
-    // TODO: return `PostListingItem` components
-    const posts = postIds.slice(0, 24).map(id => <li key={id}>{id}</li>);
-    return <ul>{posts}</ul>;
+    const listingIds = postIds.slice(0, 24);
+    const posts = listingIds.map(id => <PostListingItem key={id} id={id} />);
+    return <div>{posts}</div>;
   }
 
   return (
-    <div>
+    <section>
       <h2>{name}</h2>
       {listingsLoaded ? generatePosts() : <p>Loading posts...</p>}
-    </div>
+    </section>
   );
 }
