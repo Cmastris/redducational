@@ -1,10 +1,64 @@
+// External libraries
+import { screen } from "@testing-library/react";
+
+// PostListing
+import PostListing from "./PostListing";
+
+// postListingsSlice
 import reducer from "./postListingsSlice";
 import { initialState } from "./postListingsSlice";
 import { addSubreddit, changeStaticDataLoadedStatus, changeSubRetrievedStatus } from "./postListingsSlice";
 import { addListing, changeListingsLoadedStatus, updateListingPostIds } from "./postListingsSlice";
 import { generateOrderedPostIds } from "./postListingsSlice";
 
-describe('postListingsSlice', () => {
+// Test setup
+import { renderWithProviders } from "../../testSetup/setupTests";
+import { createRouterProvider } from "../../testSetup/testRouters";
+import { testState1 } from "../../testSetup/testState";
+
+
+describe('PostListings.js', () => {
+
+  test('Listing name is rendered', () => {
+    const name = "Science";
+    renderWithProviders(createRouterProvider(<PostListing name={name} />));
+    expect(screen.getByText(name)).toBeInTheDocument();
+  });
+
+  test('Posts are not filtered when rendered in the `All` listing feed', () => {
+    const listing = createRouterProvider(<PostListing name="All" />);
+    renderWithProviders(listing, { preloadedState: testState1 });
+    // TODO: change to post title after implementing post item component
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText("5")).toBeInTheDocument();
+    expect(screen.getByText("6")).toBeInTheDocument();
+  });
+  
+  test('Posts are filtered by subreddit when rendered in a category listing feed', () => {
+    const listing = createRouterProvider(<PostListing name="Cat 1" />);
+    renderWithProviders(listing, { preloadedState: testState1 });
+    // TODO: change to post title after implementing post item component
+    // Cat 1 should include Sub1 and Sub3 (posts 1, 3, 4, & 6)
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText("4")).toBeInTheDocument();
+    expect(screen.getByText("6")).toBeInTheDocument();
+    expect(screen.queryByText("2")).toBeNull();
+    expect(screen.queryByText("5")).toBeNull();
+  });
+  
+  test('A listing feed containing no posts renders an error message', () => {
+    const listing = createRouterProvider(<PostListing name="Empty Listing" />);
+    renderWithProviders(listing, { preloadedState: testState1 });
+    expect(screen.getByText("Sorry, no posts available.")).toBeInTheDocument();
+  });  
+});
+
+
+describe('postListingsSlice.js', () => {
 
   test('addSubreddit adds a subreddit to the initial state', () => {
     expect(reducer(initialState, addSubreddit({ name: "Sub1" }))).toEqual({
