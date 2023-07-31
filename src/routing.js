@@ -4,6 +4,7 @@ import { categories } from "./data/categories";
 
 import App from "./App/App";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import PostDetail from "./features/postContent/PostDetail";
 import PostListing from "./features/postListings/PostListing";
 
 
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "search",
         element: <PostListing name="Search Results" search={true} />,
+      },
+      {
+        path: "r/:subreddit/comments/:id/*",
+        element: <PostDetail />,
       },
       ...categoryListingRoutes
     ],
