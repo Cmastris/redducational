@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { selectAllListings, selectListingsLoadedStatus } from "../../features/postListings/postListingsSlice";
+import NavButton from "../NavButton/NavButton";
 
 export default function NavList() {
 
@@ -20,9 +21,10 @@ export default function NavList() {
       return (a.name > b.name) ? 1 : -1;
     });
 
-    // TODO: change to `NavButton`
-    const links = linkData.map(link => <li key={link.path}>{link.name}</li>);
-    return <ul>{links}</ul>;
+    const links = linkData.map(link => {
+      return <li key={link.path}><NavButton anchor={link.name} path={link.path} /></li>;
+    });
+    return <nav><ul>{links}</ul></nav>;
   }
 
   return (
