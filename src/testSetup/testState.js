@@ -35,12 +35,16 @@ export const testState1 = {
       "1": {
         category: "Cat 1",
         id: "1",
+        isSelfPost: true,
+        selfText: "Post 1 Self Text",
         subreddit: "Sub1",
         title: "Post 1"
       },
       "2": {
         category: "Cat 2",
         id: "2",
+        isSelfPost: false,
+        link: "https://www.example.com/",
         subreddit: "Sub2",
         title: "Post 2"
       },

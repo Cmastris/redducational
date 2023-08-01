@@ -21,9 +21,23 @@ export default function PostDetail() {
     }
   }, [listingsLoaded, currentPath, navigate, post]);
 
+  function renderMainContent() {
+    return (
+      <section>
+        <div>
+          <div>r/{post.subreddit}</div>
+          <div>{post.category}</div>
+        </div>
+        <h2>{post.title}</h2>
+        {post.isSelfPost ? <div><ReactMarkdown>{post.selfText}</ReactMarkdown></div> :
+        <div><a href={post.link} target="_blank" rel="noopener">Visit external link</a></div>}
+      </section>    
+    );
+  }
+
   return (
     <div>
-      Post Detail
+      {!listingsLoaded ? <p>Loading post...</p> : renderMainContent()}
     </div>
   );
 }
