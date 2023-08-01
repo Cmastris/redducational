@@ -95,6 +95,7 @@ const fetchSubPostData = (sub) => async (dispatch, getState) => {
         id: post.id,
         isSelfPost: post.is_self,
         link: post.url,
+        selfText: post.selftext,
         subreddit: post.subreddit,
         thumbnail: post.thumbnail,
         title: post.title,
