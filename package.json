@@ -43,5 +43,13 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "msw": "^1.2.3"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "(?!(/node_modules/(bail|comma-separated-tokens|decode-named-character-reference|character-entities|hast-util-whitespace|is-plain-obj|mdast-util-.*|micromark.*|property-information|react-markdown|react-native|react-native-button|remark-.*|space-separated-tokens|trim-lines|trough|unified|unist-util-.*|vfile|vfile-message)/))(/node_modules/.+.(js|jsx|mjs|cjs|ts|tsx)$)"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
   }
 }
