@@ -47,7 +47,9 @@ function App() {
     <div className={styles.App}>
       <Header />
       <NavList />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }

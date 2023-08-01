@@ -63,9 +63,9 @@ export default function PostListings({ name, search }) {
   }
 
   return (
-    <section>
+    <div>
       <h2>{name}</h2>
       {listingsLoaded ? generatePosts() : <p>Loading posts...</p>}
-    </section>
+    </div>
   );
 }

@@ -21,8 +21,8 @@ export default function PostDetail() {
   }, [listingsLoaded, currentPath, navigate, post]);
 
   return (
-    <main>
+    <div>
       Post Detail
-    </main>
+    </div>
   );
 }
