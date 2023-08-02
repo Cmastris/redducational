@@ -33,3 +33,10 @@ export async function fetchSubTopPosts(sub, duration) {
   const data = await response.json();
   return { data, successfulFetch: true };
 }
+
+export async function fetchPostComments(commentsPath) {
+  const url = `https://www.reddit.com${commentsPath}.json`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+}
