@@ -19,19 +19,25 @@ const backupTopPostsJson = {
 };
 
 export async function fetchSubTopPosts(sub, duration) {
-  const url = `https://www.reddit.com/r/${sub}/top/.json?t=${duration}`;
-  const response = await fetch(url);
+  try {
+    const url = `https://www.reddit.com/r/${sub}/top/.json?t=${duration}`;
+    const response = await fetch(url);
 
-  if (!response.ok) {
-    console.log(`Request to ${url} was not successful.`);
-    // Return static subreddit listings data (top posts of all time)
-    const subLowerCase = sub.toLowerCase();
-    const data = backupTopPostsJson[subLowerCase];
+    if (!response.ok) {
+      console.log(`Request to ${url} was not successful.`);
+      // Return static subreddit listings data (top posts of all time)
+      const data = backupTopPostsJson[sub.toLowerCase()];
+      return { data, successfulFetch: false };
+    }
+
+    const data = await response.json();
+    return { data, successfulFetch: true };
+  } catch(e) {
+    // If fetch throws an error, e.g. CORS policy block
+    // Try to return static subreddit listings data (top posts of all time)
+    const data = backupTopPostsJson[sub.toLowerCase()];
     return { data, successfulFetch: false };
   }
-
-  const data = await response.json();
-  return { data, successfulFetch: true };
 }
 
 export async function fetchPostComments(commentsPath) {
