@@ -16,13 +16,13 @@ export default function PostDetail() {
   const currentPath = useLocation().pathname;
   const navigate = useNavigate();
   useEffect(() => {
-    if (listingsLoaded && (currentPath !== post.commentsPath)) {
+    if (post && listingsLoaded && (currentPath !== post.commentsPath)) {
       navigate(post.commentsPath);
     }
   }, [listingsLoaded, currentPath, navigate, post]);
 
   function renderMainContent() {
-    return (
+    return post ? (
       <section>
         <div>
           <div>r/{post.subreddit}</div>
@@ -32,7 +32,7 @@ export default function PostDetail() {
         {post.isSelfPost ? <div><ReactMarkdown>{post.selfText}</ReactMarkdown></div> :
         <div><a href={post.link} target="_blank" rel="noopener">Visit external link</a></div>}
       </section>    
-    );
+    ) : <p>Sorry, this post couldn't be loaded.</p>;
   }
 
   return (
