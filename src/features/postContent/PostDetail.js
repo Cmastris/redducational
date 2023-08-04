@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
+import Comment from "./Comment";
 import { fetchPostCommentData } from "./postContentSlice";
 import { selectPost } from "./postContentSlice";
 import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
@@ -46,9 +47,32 @@ export default function PostDetail() {
     ) : <p>Sorry, this post couldn't be loaded.</p>;
   }
 
+  function renderComments() {
+    if (!post) {
+      return;
+    }
+    const redditURL = `https://www.reddit.com${post.commentsPath}`;
+    const redditLink = <div><a href={redditURL} target="_blank" rel="noreferrer">View all comments on Reddit</a></div>;
+    
+    let comments = <p>Loading comments...</p>;
+    if (post.commentsStatus === "fulfilled") {
+      comments = post.comments.map(comment => <Comment key={comment.id} comment={comment} />);
+    } else if (post.commentsStatus === "rejected") {
+      comments = <p>Sorry, comments couldn't be loaded.</p>;
+    }
+    return (
+      <div>
+        {redditLink}
+        {comments}
+      </div>
+    );
+  }
+
   return (
     <div>
       {!listingsLoaded ? <p>Loading post...</p> : renderMainContent()}
+      <h3>Comments</h3>
+      {!listingsLoaded ? <p>Loading comments...</p> : renderComments()}
     </div>
   );
 }

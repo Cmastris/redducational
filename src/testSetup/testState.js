@@ -38,7 +38,31 @@ export const testState1 = {
         isSelfPost: true,
         selfText: "Post 1 Self Text",
         subreddit: "Sub1",
-        title: "Post 1"
+        title: "Post 1",
+        commentsStatus: "fulfilled",
+        comments: [
+          {
+            author: "CommentAuthor1",
+            body: "Comment 1",
+            id: 1,
+            score: 100,
+            scoreHidden: false
+          },
+          {
+            author: "CommentAuthor2",
+            body: "Comment 2",
+            id: 2,
+            score: 80,
+            scoreHidden: false
+          }, 
+          {
+            author: "CommentAuthor3",
+            body: "Comment 3",
+            id: 3,
+            score: 60,
+            scoreHidden: false
+          }
+        ]
       },
       "2": {
         category: "Cat 2",
@@ -46,13 +70,15 @@ export const testState1 = {
         isSelfPost: false,
         link: "https://www.example.com/",
         subreddit: "Sub2",
-        title: "Post 2"
+        title: "Post 2",
+        commentsStatus: "pending"
       },
       "3": {
         category: "Cat 1",
         id: "3",
         subreddit: "Sub3",
-        title: "Post 3"
+        title: "Post 3",
+        commentsStatus: "rejected"
       },
       "4": {
         category: "Cat 1",
