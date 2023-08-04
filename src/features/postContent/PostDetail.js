@@ -30,7 +30,7 @@ export default function PostDetail() {
         </div>
         <h2>{post.title}</h2>
         {post.isSelfPost ? <div><ReactMarkdown>{post.selfText}</ReactMarkdown></div> :
-        <div><a href={post.link} target="_blank" rel="noopener">Visit external link</a></div>}
+        <div><a href={post.link} target="_blank" rel="noreferrer">Visit external link</a></div>}
       </section>    
     ) : <p>Sorry, this post couldn't be loaded.</p>;
   }
