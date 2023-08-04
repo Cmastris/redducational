@@ -24,15 +24,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <PostListing name="All" />,
+        element: <PostListing name="All" gridArea="main" />,
       },
       {
         path: "search",
-        element: <PostListing name="Search Results" search={true} />,
+        element: <PostListing name="Search Results" search={true} gridArea="main" />,
       },
       {
         path: "r/:subreddit/comments/:id/*",
-        element: <PostDetail />,
+        element: <PostDetail gridArea="main" />,
       },
       ...categoryListingRoutes
     ],

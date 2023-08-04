@@ -45,8 +45,8 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <Header />
-      <NavList />
+      <Header gridArea="header" />
+      <NavList gridArea="nav" />
       <main>
         <Outlet />
       </main>

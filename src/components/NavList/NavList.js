@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectAllListings, selectListingsLoadedStatus } from "../../features/postListings/postListingsSlice";
 import NavButton from "../NavButton/NavButton";
 
-export default function NavList() {
+export default function NavList({gridArea}) {
 
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
   const listings = useSelector(selectAllListings);
@@ -28,7 +28,7 @@ export default function NavList() {
   }
 
   return (
-    <section>
+    <section style={{gridArea}}>
       <h2>Categories</h2>
       {listingsLoaded ? generateLinks() : <p>Loading categories...</p>}
     </section>

@@ -6,7 +6,7 @@ import PostListingItem from "../postContent/PostListingItem";
 import { selectListingsLoadedStatus } from "./postListingsSlice";
 import { selectListing } from "./postListingsSlice";
 
-export default function PostListings({ name, search }) {
+export default function PostListings({ name, search, gridArea }) {
 
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
   const listing = useSelector(state => selectListing(state, name));
@@ -63,7 +63,7 @@ export default function PostListings({ name, search }) {
   }
 
   return (
-    <div>
+    <div style={{gridArea}}>
       <h2>{name}</h2>
       {listingsLoaded ? generatePosts() : <p>Loading posts...</p>}
     </div>

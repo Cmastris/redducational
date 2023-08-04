@@ -10,7 +10,7 @@ import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
 import Comment from "./Comment";
 import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
 
-export default function PostDetail() {
+export default function PostDetail({ gridArea }) {
   
   const { id } = useParams();
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
@@ -78,7 +78,7 @@ export default function PostDetail() {
   }
 
   return (
-    <div>
+    <div style={{gridArea}}>
       {!listingsLoaded ? <p>Loading post...</p> : renderMainContent()}
       <h3>Comments</h3>
       {!listingsLoaded ? <p>Loading comments...</p> : renderComments()}

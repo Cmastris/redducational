@@ -2,3 +2,13 @@
   background-color: rgb(230, 235, 240);
   font-family: 'Noto Sans', sans-serif;
 }
+
+@media only screen and (min-width: 1024px) {
+  .App {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "main nav";
+    grid-template-columns: 2fr 1fr;
+  }
+}
