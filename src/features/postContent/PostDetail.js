@@ -3,10 +3,12 @@ import ReactMarkdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import Comment from "./Comment";
 import { fetchPostCommentData } from "./postContentSlice";
 import { selectPost } from "./postContentSlice";
 import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
+
+import Comment from "./Comment";
+import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
 
 export default function PostDetail() {
   
@@ -41,8 +43,15 @@ export default function PostDetail() {
           <div>{post.category}</div>
         </div>
         <h2>{post.title}</h2>
-        {post.isSelfPost ? <div><ReactMarkdown>{post.selfText}</ReactMarkdown></div> :
-        <div><a href={post.link} target="_blank" rel="noreferrer">Visit external link</a></div>}
+        {post.isSelfPost ? (
+          <div>
+            <ReactMarkdown components={{a: MarkdownLinkRenderer}}>{post.selfText}</ReactMarkdown>
+          </div>
+         ) : (
+          <div>
+            <a href={post.link} target="_blank" rel="noreferrer">Visit external link</a>
+          </div>
+        )}
       </section>    
     ) : <p>Sorry, this post couldn't be loaded.</p>;
   }

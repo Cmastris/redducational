@@ -61,6 +61,13 @@ export const testState1 = {
             id: 3,
             score: 60,
             scoreHidden: false
+          },
+          {
+            author: "CommentAuthor4",
+            body: "Comment with a [comment link](https://www.example.com/)",
+            id: 4,
+            score: 40,
+            scoreHidden: false
           }
         ]
       },

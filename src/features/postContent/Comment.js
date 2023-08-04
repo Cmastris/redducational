@@ -1,5 +1,7 @@
 import ReactMarkdown from "react-markdown";
 
+import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
+
 export default function Comment({ comment }) {
   return (
     <article>
@@ -7,7 +9,9 @@ export default function Comment({ comment }) {
         <div>{comment.scoreHidden ? <span>Score hidden</span> : comment.score}</div>
         <div>u/{comment.author}</div>
       </div>
-      <div><ReactMarkdown>{comment.body}</ReactMarkdown></div>
+      <div>
+        <ReactMarkdown components={{a: MarkdownLinkRenderer}}>{comment.body}</ReactMarkdown>
+      </div>
     </article>
   );
 }

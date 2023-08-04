@@ -57,6 +57,19 @@ describe('PostDetail.js', () => {
 });
 
 
+describe('MarkdownLinkRenderer.js', () => {
+
+  test('Comment links contain `target="_blank"` & `rel="noreferrer"` attributes', () => {
+    const routing = createRouterProvider(<PostDetail />, "/:id/", ["/1/"]);
+    renderWithProviders(routing, { preloadedState: testState1 });
+
+    const link = screen.getByRole("link", { name: "comment link" });
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noreferrer");
+  });
+});
+
+
 describe('postListingsSlice.js', () => {
 
   test('addPost adds a subreddit to the initial state', () => {
