@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
+import { fetchPostCommentData } from "./postContentSlice";
 import { selectPost } from "./postContentSlice";
 import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
 
@@ -20,6 +21,16 @@ export default function PostDetail() {
       navigate(post.commentsPath);
     }
   }, [listingsLoaded, currentPath, navigate, post]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // Fetch comments data
+    if (post && listingsLoaded && !post.commentsStatus) {
+      dispatch(fetchPostCommentData(
+        { commentsPath: post.commentsPath, postId: post.id }
+      ));
+    }
+  }, [post, listingsLoaded, dispatch]);
 
   function renderMainContent() {
     return post ? (
