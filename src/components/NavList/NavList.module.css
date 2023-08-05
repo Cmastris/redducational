@@ -1,6 +1,6 @@
 .navList {
   background-color: white;
-  margin: 1em 6%;
+  margin: 2rem 6% 3rem 6%;
   padding: 1.2em 8%;
   text-align: center;
 }
@@ -28,6 +28,10 @@
 @media only screen and (min-width: 1024px) {
   .toggle {
     display: none;
+  }
+
+  .navList {
+    margin: 4rem 6%;
   }
 }
 
