@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 import { selectAllListings, selectListingsLoadedStatus } from "../../features/postListings/postListingsSlice";
 import NavButton from "../NavButton/NavButton";
+import styles from "./NavList.module.css";
 
 export default function NavList({gridArea}) {
 
@@ -24,13 +25,15 @@ export default function NavList({gridArea}) {
     const links = linkData.map(link => {
       return <li key={link.path}><NavButton anchor={link.name} path={link.path} /></li>;
     });
-    return <nav><ul>{links}</ul></nav>;
+    return <nav><ul className={styles.list}>{links}</ul></nav>;
   }
 
   return (
     <section style={{gridArea}}>
-      <h2>Categories</h2>
-      {listingsLoaded ? generateLinks() : <p>Loading categories...</p>}
+      <div className={styles.navList}>
+        <h2 className={styles.h2}>Categories</h2>
+        {listingsLoaded ? generateLinks() : <p>Loading categories...</p>}
+      </div>
     </section>
   );
 }

@@ -1,0 +1,17 @@
+.navList {
+  background-color: white;
+  margin: 1em 6%;
+  padding: 1.2em 8%;
+  text-align: center;
+}
+
+.h2 {
+  color: rgb(28, 28, 28);
+  font-size: 1.4em;
+  text-transform: uppercase;
+}
+
+.list {
+  padding: 0;
+  list-style-type: none;
+}
