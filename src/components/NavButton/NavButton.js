@@ -1,5 +1,10 @@
 import { NavLink } from "react-router-dom";
 
+import styles from "./NavButton.module.css";
+
 export default function NavButton({ anchor, path }) {
-  return <NavLink to={path}>{anchor}</NavLink>;
+  return <NavLink 
+    className={({ isActive }) => isActive ? styles.navButtonActive : styles.navButton}
+    to={path}
+  >{anchor}</NavLink>;
 }
