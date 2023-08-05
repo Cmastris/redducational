@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { selectAllListings, selectListingsLoadedStatus } from "../../features/postListings/postListingsSlice";
@@ -6,6 +7,8 @@ import styles from "./NavList.module.css";
 
 export default function NavList({gridArea}) {
 
+  // Categories list collapsed by default on tablet & mobile
+  const [listExpanded, setListExpanded] = useState(false);
   const listingsLoaded = useSelector(selectListingsLoadedStatus);
   const listings = useSelector(selectAllListings);
 
@@ -32,7 +35,12 @@ export default function NavList({gridArea}) {
     <section style={{gridArea}}>
       <div className={styles.navList}>
         <h2 className={styles.h2}>Categories</h2>
-        {listingsLoaded ? generateLinks() : <p>Loading categories...</p>}
+        <div className={listExpanded ? null : styles.collapsed}>
+          {listingsLoaded ? generateLinks() : <p>Loading categories...</p>}
+        </div>
+        <div className={styles.toggle} onClick={() => setListExpanded(!listExpanded)}>
+          {listExpanded ? "- Hide" : "+ Show"} Categories
+        </div>
       </div>
     </section>
   );
