@@ -15,7 +15,7 @@ export default function PostListingItem({ id }) {
         <div className={styles.content}>
           <div className={`${styles.detailRow} ${utilStyles.orange}`}>
             <div>r/{post.subreddit}</div>
-            <div className={styles.divider}>|</div>
+            <div className={utilStyles.pipe}>|</div>
             <div>{post.category}</div>
           </div>
           <h3>{post.title}</h3>

@@ -44,7 +44,7 @@ export default function PostDetail({ gridArea }) {
         <div className={styles.postHeader}>
           <div className={styles.detailRow}>
             <div>r/{post.subreddit}</div>
-            <div className={styles.divider}>|</div>
+            <div className={utilStyles.pipe}>|</div>
             <div>{post.category}</div>
           </div>
           <div className={utilStyles.hLine}></div>
