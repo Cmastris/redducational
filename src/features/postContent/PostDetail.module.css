@@ -1,0 +1,48 @@
+.postDetail {
+  margin: 0 6%;
+}
+
+.postHeader {
+  min-height: 3rem;
+  font-weight: 700;
+}
+
+.detailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0.8em;
+  margin-bottom: 1.6rem;
+  color: rgb(255, 86, 0);
+}
+
+.divider {
+  margin: 0 0.9em;
+  color: rgb(190, 195, 200);
+}
+
+.line {
+  display: block;
+  width: 100%;
+  border-top: 1px solid rgb(190, 195, 200);
+}
+
+.mainContent {
+  margin: 1rem 0 2rem 0;
+  padding: 1em;
+  background-color: white;
+  border: 2px solid rgb(190, 195, 200);
+}
+
+.postTitle {
+  margin: 1.1em 0;
+  font-size: 1.3em;
+}
+
+.postLink {
+  margin: 1.1em 0;
+}
+
+.offBlack {
+  color: rgb(28, 28, 28);
+}

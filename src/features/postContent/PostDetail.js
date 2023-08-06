@@ -8,7 +8,9 @@ import { selectPost } from "./postContentSlice";
 import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
 
 import Comment from "./Comment";
+import ExternalLink from "../../components/ExternalLink/ExternalLink";
 import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
+import styles from "./PostDetail.module.css";
 
 export default function PostDetail({ gridArea }) {
   
@@ -38,20 +40,26 @@ export default function PostDetail({ gridArea }) {
   function renderMainContent() {
     return post ? (
       <section>
-        <div>
-          <div>r/{post.subreddit}</div>
-          <div>{post.category}</div>
+        <div className={styles.postHeader}>
+          <div className={styles.detailRow}>
+            <div>r/{post.subreddit}</div>
+            <div className={styles.divider}>|</div>
+            <div>{post.category}</div>
+          </div>
+          <div className={styles.line}></div>
         </div>
-        <h2>{post.title}</h2>
-        {post.isSelfPost ? (
-          <div>
-            <ReactMarkdown components={{a: MarkdownLinkRenderer}}>{post.selfText}</ReactMarkdown>
-          </div>
-         ) : (
-          <div>
-            <a href={post.link} target="_blank" rel="noreferrer">Visit external link</a>
-          </div>
-        )}
+        <div className={styles.mainContent}>
+          <h2 className={styles.postTitle}>{post.title}</h2>
+          {post.isSelfPost ? (
+            <div className={styles.offBlack}>
+              <ReactMarkdown components={{a: MarkdownLinkRenderer}}>{post.selfText}</ReactMarkdown>
+            </div>
+          ) : (
+            <div className={styles.postLink}>
+              <ExternalLink anchor="Visit external link" href={post.link} />
+            </div>
+          )}
+        </div>
       </section>    
     ) : <p>Sorry, this post couldn't be loaded.</p>;
   }
@@ -61,7 +69,7 @@ export default function PostDetail({ gridArea }) {
       return;
     }
     const redditURL = `https://www.reddit.com${post.commentsPath}`;
-    const redditLink = <div><a href={redditURL} target="_blank" rel="noreferrer">View all comments on Reddit</a></div>;
+    const redditLink = <ExternalLink anchor="View all comments" href={redditURL} />;
     
     let comments = <p>Loading comments...</p>;
     if (post.commentsStatus === "fulfilled") {
@@ -78,10 +86,12 @@ export default function PostDetail({ gridArea }) {
   }
 
   return (
-    <div style={{gridArea}}>
+    <div style={{gridArea}} className={styles.postDetail}>
       {!listingsLoaded ? <p>Loading post...</p> : renderMainContent()}
-      <h3>Comments</h3>
-      {!listingsLoaded ? <p>Loading comments...</p> : renderComments()}
+      <section>
+        <h3>Comments</h3>
+        {!listingsLoaded ? <p>Loading comments...</p> : renderComments()}
+      </section>
     </div>
   );
 }
