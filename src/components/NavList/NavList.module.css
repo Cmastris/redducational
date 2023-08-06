@@ -1,7 +1,8 @@
 .navList {
-  background-color: white;
   margin: 2rem 6% 3rem 6%;
   padding: 1.2em 8%;
+  background-color: white;
+  box-shadow: 4px 4px 4px rgb(200, 200, 200);
   text-align: center;
 }
 
