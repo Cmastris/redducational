@@ -52,7 +52,7 @@ export default function PostDetail({ gridArea }) {
         <div className={styles.mainContent}>
           <h2 className={styles.postTitle}>{post.title}</h2>
           {post.isSelfPost ? (
-            <div className={styles.offBlack}>
+            <div className={utilStyles.offBlack}>
               <ReactMarkdown components={{a: MarkdownLinkRenderer}}>{post.selfText}</ReactMarkdown>
             </div>
           ) : (
