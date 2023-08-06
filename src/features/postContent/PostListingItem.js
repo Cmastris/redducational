@@ -19,7 +19,7 @@ export default function PostListingItem({ id }) {
             <div>{post.category}</div>
           </div>
           <h3>{post.title}</h3>
-          <div className={`${styles.detailRow} ${styles.detailBottom}`}>
+          <div className={`${styles.detailRow} ${utilStyles.darkGrey}`}>
             <MdArrowUpward className={styles.icon} size={24} />
             <div className={styles.marginRight}>{post.upvotes} upvotes</div>
             <div className={styles.comments}>
