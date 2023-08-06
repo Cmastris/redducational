@@ -27,13 +27,6 @@
   border: 2px solid rgb(0, 0, 0);
 }
 
-.detailRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  row-gap: 0.8em;
-}
-
 .marginRight {
   margin-right: 2em;
 }

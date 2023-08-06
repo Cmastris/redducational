@@ -17,7 +17,7 @@ export default function PostListingItem({ id }) {
         <div className={styles.content}>
           <TextLabelPair textOne={`r/${post.subreddit}`} textTwo={post.category} />
           <h3>{post.title}</h3>
-          <div className={`${styles.detailRow} ${utilStyles.darkGrey}`}>
+          <div className={`${utilStyles.flexRow} ${utilStyles.darkGrey}`}>
             <MdArrowUpward className={styles.icon} size={24} />
             <div className={styles.marginRight}>{post.upvotes} upvotes</div>
             <div className={styles.comments}>
