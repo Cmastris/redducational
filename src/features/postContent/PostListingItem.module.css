@@ -3,6 +3,8 @@
   margin: 1rem 0 1.5rem 0;
   border: 2px solid transparent;
   box-shadow: 6px 6px 6px rgb(200, 200, 200);
+  transition: border 0.3s, box-shadow 0.8s;
+  transition-timing-function: ease-out;
 }
 
 .content {
