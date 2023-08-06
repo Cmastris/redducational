@@ -5,6 +5,8 @@ import { selectAllPosts } from "../postContent/postContentSlice";
 import PostListingItem from "../postContent/PostListingItem";
 import { selectListingsLoadedStatus } from "./postListingsSlice";
 import { selectListing } from "./postListingsSlice";
+
+import utilStyles from "../../App/utils.module.css";
 import styles from "./PostListing.module.css";
 
 export default function PostListings({ name, search, gridArea }) {
@@ -67,7 +69,7 @@ export default function PostListings({ name, search, gridArea }) {
     <div style={{gridArea}} className={styles.postListing}>
       <div className={styles.listingHeader}>
         <h2 className={styles.h2}>{name}</h2>
-        <div className={styles.line}></div>
+        <div className={utilStyles.hLine}></div>
       </div>
       {listingsLoaded ? generatePosts() : <p>Loading posts...</p>}
     </div>

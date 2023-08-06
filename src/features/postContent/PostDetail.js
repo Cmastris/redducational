@@ -10,6 +10,7 @@ import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
 import Comment from "./Comment";
 import ExternalLink from "../../components/ExternalLink/ExternalLink";
 import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
+import utilStyles from "../../App/utils.module.css";
 import styles from "./PostDetail.module.css";
 
 export default function PostDetail({ gridArea }) {
@@ -46,7 +47,7 @@ export default function PostDetail({ gridArea }) {
             <div className={styles.divider}>|</div>
             <div>{post.category}</div>
           </div>
-          <div className={styles.line}></div>
+          <div className={utilStyles.hLine}></div>
         </div>
         <div className={styles.mainContent}>
           <h2 className={styles.postTitle}>{post.title}</h2>
