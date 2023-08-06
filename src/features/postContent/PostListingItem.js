@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MdChatBubbleOutline, MdArrowUpward } from "react-icons/md";
 
 import { selectPost } from "./postContentSlice";
+import utilStyles from "../../App/utils.module.css";
 import styles from "./PostListingItem.module.css";
 
 export default function PostListingItem({ id }) {
@@ -12,7 +13,7 @@ export default function PostListingItem({ id }) {
     <article className={styles.listing}>
       <Link className={styles.link} to={post.commentsPath}>
         <div className={styles.content}>
-          <div className={`${styles.detailRow} ${styles.detailTop}`}>
+          <div className={`${styles.detailRow} ${utilStyles.orange}`}>
             <div>r/{post.subreddit}</div>
             <div className={styles.divider}>|</div>
             <div>{post.category}</div>
