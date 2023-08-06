@@ -8,10 +8,6 @@
 }
 
 .detailRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  row-gap: 0.8em;
   margin-bottom: 1.6rem;
   color: rgb(255, 86, 0);
 }

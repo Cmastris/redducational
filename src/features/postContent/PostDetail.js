@@ -10,6 +10,7 @@ import { selectListingsLoadedStatus } from "../postListings/postListingsSlice";
 import Comment from "./Comment";
 import ExternalLink from "../../components/ExternalLink/ExternalLink";
 import MarkdownLinkRenderer from "./MarkdownLinkRenderer";
+import TextLabelPair from "../../components/TextLabelPair/TextLabelPair";
 import utilStyles from "../../App/utils.module.css";
 import styles from "./PostDetail.module.css";
 
@@ -43,9 +44,7 @@ export default function PostDetail({ gridArea }) {
       <section>
         <div className={styles.postHeader}>
           <div className={styles.detailRow}>
-            <div>r/{post.subreddit}</div>
-            <div className={utilStyles.pipe}>|</div>
-            <div>{post.category}</div>
+            <TextLabelPair textOne={`r/${post.subreddit}`} textTwo={post.category} />
           </div>
           <div className={utilStyles.hLine}></div>
         </div>

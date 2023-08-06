@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { MdChatBubbleOutline, MdArrowUpward } from "react-icons/md";
 
 import { selectPost } from "./postContentSlice";
+
+import TextLabelPair from "../../components/TextLabelPair/TextLabelPair";
 import utilStyles from "../../App/utils.module.css";
 import styles from "./PostListingItem.module.css";
 
@@ -13,11 +15,7 @@ export default function PostListingItem({ id }) {
     <article className={styles.listing}>
       <Link className={styles.link} to={post.commentsPath}>
         <div className={styles.content}>
-          <div className={`${styles.detailRow} ${utilStyles.orange}`}>
-            <div>r/{post.subreddit}</div>
-            <div className={utilStyles.pipe}>|</div>
-            <div>{post.category}</div>
-          </div>
+          <TextLabelPair textOne={`r/${post.subreddit}`} textTwo={post.category} />
           <h3>{post.title}</h3>
           <div className={`${styles.detailRow} ${utilStyles.darkGrey}`}>
             <MdArrowUpward className={styles.icon} size={24} />
