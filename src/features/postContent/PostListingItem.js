@@ -19,7 +19,7 @@ export default function PostListingItem({ id }) {
           <h3>{post.title}</h3>
           <div className={`${utilStyles.flexRow} ${utilStyles.darkGrey}`}>
             <MdArrowUpward className={styles.icon} size={24} />
-            <div className={styles.marginRight}>{post.upvotes} upvotes</div>
+            <div className={styles.marginRight}>{post.upvotes} votes</div>
             <div className={styles.comments}>
               <MdChatBubbleOutline className={`${styles.icon} ${styles.chatIcon}`} size={24} />
               <div>{post.commentCount} comments</div>
