@@ -1,6 +1,7 @@
 .comment {
   margin: 2rem 0;
   padding: 1.2em;
+  overflow: auto; /* URLs and formatting that don't wrap */
   background-color: white;
   border-left: 3px solid rgb(255, 86, 0);
   box-shadow: 4px 4px 4px rgb(200, 200, 200);

@@ -15,6 +15,7 @@
 .mainContent {
   margin: 1rem 0 2rem 0;
   padding: 1em;
+  overflow: auto; /* URLs and formatting that don't wrap */
   background-color: white;
   border: 2px solid rgb(190, 195, 200);
 }
