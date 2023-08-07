@@ -1,0 +1,26 @@
+.comment {
+  margin: 2rem 0;
+  padding: 1.2em;
+  background-color: white;
+  border-left: 3px solid rgb(255, 86, 0);
+  box-shadow: 4px 4px 4px rgb(200, 200, 200);
+}
+
+.marginRight {
+  margin-right: 2em;
+}
+
+.icon {
+  margin-right: 0.5em;
+  color: rgb(190, 195, 200);
+}
+
+.username {
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  margin-top: 0.1em;
+  margin-right: 0.6em;
+}
