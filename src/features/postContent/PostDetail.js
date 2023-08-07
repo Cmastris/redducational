@@ -73,7 +73,12 @@ export default function PostDetail({ gridArea }) {
     
     let comments = <p>Loading comments...</p>;
     if (post.commentsStatus === "fulfilled") {
-      comments = post.comments.map(comment => <Comment key={comment.id} comment={comment} />);
+      comments = [];
+      post.comments.forEach(comment => {
+        if (comment.score > 0) {
+          comments.push(<Comment key={comment.id} comment={comment} />);
+        }
+      });
     } else if (post.commentsStatus === "rejected") {
       comments = <p>Sorry, comments couldn't be loaded.</p>;
     }
