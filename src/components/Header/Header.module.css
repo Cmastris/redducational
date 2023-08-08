@@ -5,7 +5,6 @@
 }
 
 .appName {
-  padding: 0 7.5%;
   font-family: 'Varela Round', 'Noto Sans', sans-serif;
 }
 
@@ -28,6 +27,6 @@
   }
 
   .appName {
-    margin-right: auto;  /* Push logo to the left */
+    margin: 0 auto 0 12%;  /* Push logo to the left, aligned with main content */
   }
 }
