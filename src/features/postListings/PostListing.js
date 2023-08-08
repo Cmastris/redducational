@@ -15,7 +15,7 @@ export default function PostListings({ name, search, gridArea }) {
   const listing = useSelector(state => selectListing(state, name));
   const mainListing = useSelector(state => selectListing(state, "All"));
   const postsContent = useSelector(selectAllPosts);
-  const [queryParams, setQueryParams] = useSearchParams();
+  const [queryParams] = useSearchParams();
 
   function getCategoryPostIds() {
     const allPostIds = mainListing.postIds;
