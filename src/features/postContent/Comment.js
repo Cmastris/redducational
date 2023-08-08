@@ -9,12 +9,12 @@ export default function Comment({ comment }) {
   return (
     <article className={styles.comment}>
       <div className={`${utilStyles.flexRow} ${utilStyles.darkGrey}`}>
-        <MdArrowUpward className={styles.icon} size={24} />
+        <MdArrowUpward className={utilStyles.upvoteIcon} size={24} />
         <div className={styles.marginRight}>
           {comment.scoreHidden ? <span>???</span> : comment.score}
         </div>
         <div className={styles.username}>
-          <MdPersonOutline className={`${styles.icon} ${styles.userIcon}`} size={24} />
+          <MdPersonOutline className={styles.userIcon} size={24} />
           <div>{comment.author}</div>
         </div>
       </div>

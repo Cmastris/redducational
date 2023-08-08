@@ -18,10 +18,10 @@ export default function PostListingItem({ id }) {
           <TextLabelPair textOne={`r/${post.subreddit}`} textTwo={post.category} />
           <h3>{post.title}</h3>
           <div className={`${utilStyles.flexRow} ${utilStyles.darkGrey}`}>
-            <MdArrowUpward className={styles.icon} size={24} />
+            <MdArrowUpward className={utilStyles.upvoteIcon} size={24} />
             <div className={styles.marginRight}>{post.upvotes} votes</div>
             <div className={styles.comments}>
-              <MdChatBubbleOutline className={`${styles.icon} ${styles.chatIcon}`} size={24} />
+              <MdChatBubbleOutline className={styles.chatIcon} size={24} />
               <div>{post.commentCount} comments</div>
             </div>
           </div>

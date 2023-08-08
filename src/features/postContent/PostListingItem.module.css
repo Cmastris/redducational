@@ -31,11 +31,6 @@
   margin-right: 2em;
 }
 
-.icon {
-  margin-right: 0.5em;
-  color: rgb(190, 195, 200);
-}
-
 .comments {
   display: flex;
   align-items: center;
@@ -44,4 +39,5 @@
 .chatIcon {
   margin-top: 0.25em;
   margin-right: 0.6em;
+  color: rgb(190, 195, 200);
 }
