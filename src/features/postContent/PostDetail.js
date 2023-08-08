@@ -79,6 +79,9 @@ export default function PostDetail({ gridArea }) {
           comments.push(<Comment key={comment.id} comment={comment} />);
         }
       });
+      if (comments.length === 0) {
+        comments = <p>Sorry, there are no top-level comments with a positive score.</p>;
+      }
     } else if (post.commentsStatus === "rejected") {
       comments = <p>Sorry, comments couldn't be loaded.</p>;
     }
