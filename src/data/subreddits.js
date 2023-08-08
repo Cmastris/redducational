@@ -4,7 +4,6 @@ export const allSubreddits = [
   "EverythingScience",
   "explainlikeimfive",
   "history",
-  "IWantToLearn",
   "science",
   "todayilearned",
 ];
