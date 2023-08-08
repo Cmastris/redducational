@@ -143,12 +143,11 @@ export const fetchListingsData = () => async (dispatch, getState) => {
   const subNames = Object.keys(subreddits);
 
   // Make fewer requests during development to avoid rate limit
-  // TODO: Remove `twoSubs` in production
-  const twoSubs = subNames.slice(2, 4);
+  // const twoSubs = subNames.slice(2, 4);
 
   // Dispatch sub post requests asynchronously; wait for all to resolve or reject
-  // TODO: Replace `twoSubs` with `subNames` in production
-  const settledPromises = await Promise.allSettled(twoSubs.map(sub => {
+  // Use `twoSubs` instead of `subNames` during development
+  const settledPromises = await Promise.allSettled(subNames.map(sub => {
     return dispatch(fetchSubPostData(sub));
   }));
 
