@@ -1,7 +1,7 @@
 # Redducational <!-- omit in toc -->
 A web app that displays the latest highly-rated posts from educational subreddits (topic-based forums on Reddit), built using React, Redux, and React Router.
 
-Take a look: https://redducational.netlify.app/.
+**Please note:** this was developed as a practice project in 2023 and is no longer maintained. The repository remains publicly accessible as part of my development portfolio, but it may now be affected by broken functionality and/or potential security issues.
 
 
 ## Contents <!-- omit in toc -->
@@ -14,7 +14,6 @@ Take a look: https://redducational.netlify.app/.
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [FAQs](#faqs)
-  - [Can I see an example?](#can-i-see-an-example)
   - [Why did you build this?](#why-did-you-build-this)
   - [Is this project in active development?](#is-this-project-in-active-development)
 
@@ -85,10 +84,6 @@ Over 30 tests are implemented using Jest and React Testing Library, incorporatin
 
 ## FAQs
 
-### Can I see an example?
-Yes! A production version of the website can be found here: https://redducational.netlify.app/.
-
-
 ### Why did you build this?
 This is one of the practice projects that I completed as part of the Codecademy Full-Stack Engineer career path.
 
@@ -102,4 +97,4 @@ In particular, I now have significantly more experience with:
 
 
 ### Is this project in active development?
-I'm not currently working on further improvements/features.
+No; this was developed as a practice project in 2023 and is no longer maintained. The repository remains publicly accessible as part of my development portfolio, but it may now be affected by broken functionality and/or potential security issues.
